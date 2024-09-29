@@ -17,6 +17,48 @@ ThemeData lightTheme = ThemeData(
   primaryColorDark: primaryColor,
   fontFamily: fontFamily,
   useMaterial3: true,
+  buttonTheme: const ButtonThemeData(
+    buttonColor: primaryColor,
+    textTheme: ButtonTextTheme.primary,
+    layoutBehavior: ButtonBarLayoutBehavior.padded,
+  ),
+  elevatedButtonTheme: const ElevatedButtonThemeData(
+    style: ButtonStyle(
+      backgroundColor: WidgetStatePropertyAll(primaryColor),
+      foregroundColor: WidgetStatePropertyAll(onPrimaryColor),
+      iconColor: WidgetStatePropertyAll(onPrimaryColor),
+    ),
+  ),
+  inputDecorationTheme: const InputDecorationTheme(
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(6)),
+      borderSide: BorderSide(
+        color: Colors.grey,
+      ),
+      gapPadding: 2,
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(6)),
+      borderSide: BorderSide(
+        color: primaryColor,
+      ),
+      gapPadding: 2,
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(6)),
+      borderSide: BorderSide(
+        color: errorColor,
+      ),
+      gapPadding: 2,
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(6)),
+      borderSide: BorderSide(
+        color: errorColor,
+      ),
+      gapPadding: 2,
+    ),
+  ),
 );
 
 ThemeData darkTheme = ThemeData(
@@ -33,4 +75,16 @@ ThemeData darkTheme = ThemeData(
   ),
   fontFamily: fontFamily,
   useMaterial3: true,
+  buttonTheme: const ButtonThemeData(
+    buttonColor: primaryColor,
+    textTheme: ButtonTextTheme.primary,
+    layoutBehavior: ButtonBarLayoutBehavior.padded,
+  ),
+  elevatedButtonTheme: const ElevatedButtonThemeData(
+    style: ButtonStyle(
+      backgroundColor: WidgetStatePropertyAll(primaryColor),
+      foregroundColor: WidgetStatePropertyAll(onPrimaryColor),
+      iconColor: WidgetStatePropertyAll(onPrimaryColor),
+    ),
+  ),
 );

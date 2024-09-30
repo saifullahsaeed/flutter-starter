@@ -87,3 +87,30 @@ class AppleButton extends StatelessWidget {
     );
   }
 }
+
+class TextButtonCustom extends StatelessWidget {
+  final String label;
+  final VoidCallback onPressed;
+  final String style;
+  const TextButtonCustom({
+    super.key,
+    required this.label,
+    required this.onPressed,
+    this.style = 'primary',
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: onPressed,
+      child: Text(
+        label,
+        style: TextStyle(
+          color: style == 'primary'
+              ? Get.theme.colorScheme.primary
+              : Get.theme.colorScheme.secondary,
+        ),
+      ),
+    );
+  }
+}

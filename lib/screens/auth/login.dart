@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:starter/style/text.dart';
+import 'package:starter/utils/consts.dart';
 import 'package:starter/widgets/button.dart';
+import 'package:starter/widgets/input.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -14,6 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
@@ -23,43 +26,32 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  const Image(
+                    image: AssetImage('assets/images/logo.png'),
+                    width: 200,
+                  ),
+                  const SizedBox(height: 20),
                   Text(
                     'Login with your account ',
                     textAlign: TextAlign.center,
                     style: titleTextStyle,
                   ),
                   const SizedBox(height: 20),
-                  TextFormField(
-                    keyboardType: TextInputType.emailAddress,
-                    onTapOutside: (focus) {
-                      FocusScope.of(context).unfocus();
-                    },
-                    decoration: InputDecoration(
-                      hintText: 'Enter your email',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                    ),
+                  buildInput(
+                    label: 'Email',
+                    hint: 'Enter your email',
+                    inputType: TextInputType.emailAddress,
+                    controller: TextEditingController(),
+                    context: context,
                   ),
                   const SizedBox(height: 10),
-                  TextFormField(
-                    keyboardType: TextInputType.visiblePassword,
-                    obscureText: true,
-                    onTapOutside: (focus) {
-                      FocusScope.of(context).unfocus();
-                    },
-                    decoration: InputDecoration(
-                      hintText: 'Enter your password',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                    ),
+                  buildInput(
+                    label: 'Password',
+                    hint: 'Enter your password',
+                    inputType: TextInputType.visiblePassword,
+                    controller: TextEditingController(),
+                    isPassword: true,
+                    context: context,
                   ),
                   const SizedBox(height: 20),
                   SizedBox(
@@ -69,6 +61,24 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {},
                       icon: Icons.login_rounded,
                     ),
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      TextButtonCustom(
+                        onPressed: () {
+                          Get.toNamed('/auth/forgot');
+                        },
+                        label: 'Forgot Password?',
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Get.toNamed('/auth/signup');
+                        },
+                        child: const Text('Create Account'),
+                      ),
+                    ],
                   ),
                 ],
               ),

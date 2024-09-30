@@ -62,7 +62,7 @@ class AuthScreen extends StatelessWidget {
                             label: 'Sign up',
                             icon: Icons.person_add_rounded,
                             onPressed: () {
-                              Get.toNamed('auth/register');
+                              Get.toNamed('auth/signup');
                             },
                             style: 'secondary',
                           ),

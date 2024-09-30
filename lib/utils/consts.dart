@@ -12,3 +12,5 @@ const Color onSecondaryColor = Color(0xFF5F5F5F);
 const Color errorColor = Color(0xFFC12727);
 const Color surfaceLight = Color(0xFFFFFFFF);
 const Color surfaceDark = Color(0xFF1F1F1F);
+const Color onSurfaceLight = Color(0xFF000000);
+const Color cardColor = Color(0xFFDCDCDC);

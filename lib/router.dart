@@ -33,7 +33,9 @@ final List<GetPage<dynamic>> routes = [
       ),
       GetPage(
         name: '/reset',
-        page: () => const ResetPassword(),
+        page: () => ResetPassword(
+          token: Get.parameters['token']!,
+        ),
       ),
     ],
   ),

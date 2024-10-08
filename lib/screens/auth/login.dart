@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:starter/screens/auth/controllers/auth_controller.dart';
 import 'package:starter/style/text.dart';
-import 'package:starter/utils/consts.dart';
+import 'package:starter/utils/load_action.dart';
+import 'package:starter/utils/validators.dart';
 import 'package:starter/widgets/button.dart';
 import 'package:starter/widgets/input.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
+class LoginScreen extends GetView<AuthController> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  LoginScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
             width: Get.width,
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Form(
+              key: controller.loginFormKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -41,24 +40,33 @@ class _LoginScreenState extends State<LoginScreen> {
                     label: 'Email',
                     hint: 'Enter your email',
                     inputType: TextInputType.emailAddress,
-                    controller: TextEditingController(),
+                    controller: emailController,
                     context: context,
+                    validator: (value) => emailValidator(value),
                   ),
                   const SizedBox(height: 10),
                   buildInput(
                     label: 'Password',
                     hint: 'Enter your password',
                     inputType: TextInputType.visiblePassword,
-                    controller: TextEditingController(),
+                    controller: passwordController,
                     isPassword: true,
                     context: context,
+                    validator: (value) => passwordValidator(value),
                   ),
                   const SizedBox(height: 20),
                   SizedBox(
                     width: Get.width,
                     child: MainButton(
                       label: 'Login',
-                      onPressed: () {},
+                      onPressed: () {
+                        if (controller.loginFormKey.currentState!.validate()) {
+                          loadAction(controller.login(
+                            emailController.text,
+                            passwordController.text,
+                          ));
+                        }
+                      },
                       icon: Icons.login_rounded,
                     ),
                   ),
@@ -74,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       TextButton(
                         onPressed: () {
-                          Get.toNamed('/auth/signup');
+                          Get.toNamed('/auth/register');
                         },
                         child: const Text('Create Account'),
                       ),

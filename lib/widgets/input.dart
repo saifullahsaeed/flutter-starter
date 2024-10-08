@@ -9,6 +9,7 @@ TextFormField buildInput({
   required TextEditingController controller,
   bool isPassword = false,
   Widget? suffixIcon,
+  String? Function(String?)? validator,
   required BuildContext context,
 }) {
   return TextFormField(
@@ -18,6 +19,7 @@ TextFormField buildInput({
     onTapOutside: (focus) {
       FocusScope.of(context).unfocus();
     },
+    validator: validator,
     decoration: InputDecoration(
       labelText: label,
       hintText: hint,
